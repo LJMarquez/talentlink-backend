@@ -1,0 +1,135 @@
+# Base URL
+@baseUrl = http://localhost:3000
+
+###
+# Test GET /find/:database/:collection
+###
+GET {{baseUrl}}/find/TalentLinkDB/users
+Content-Type: application/json
+
+###
+GET {{baseUrl}}/find/TalentLinkDB/published_jobs
+Content-Type: application/json
+
+###
+GET {{baseUrl}}/find/TalentLinkDB/pending_jobs
+Content-Type: application/json
+
+###
+# Test POST /insert/:database/:collection
+###
+# Insert a single Product
+POST {{baseUrl}}/insert/TalentLinkDB/users
+Content-Type: application/json
+
+{
+    "document": {
+        "firstName": "Leo",
+        "lastName": "Marquez",
+        "school": null,
+        "graduationYear": null,
+        "major": null,
+        "notifications": [],
+        "appliedJobs": [],
+        "company": "TalentLink",
+        "position": "CTO",
+        "companySize": "501-1000 employees",
+        "publishedJobs": [],
+        "pendingJobs": [],
+        "email": "talentlinkcto@outlook.com",
+        "password": "password123",
+        "isAdmin": true,
+        "isEmployer": true
+    }
+}
+
+###
+
+# Insert multiple Users
+POST {{baseUrl}}/insert/TalentLinkDB/pending_jobs
+Content-Type: application/json
+
+{
+    "documents": [
+        {
+    "jobName": "Customer Support Specialist",
+    "jobType": "Contract",
+    "salaryRange": { "minSalary": 20, "maxSalary": 25 },
+    "location": "Austin, TX",
+    "experienceLevel": "Entry-level",
+    "qualifications": ["High School Diploma", "Excellent communication skills"],
+    "skills": ["Customer service", "Problem-solving", "CRM tools"],
+    "responsibilities": [
+      "Assist customers via email and phone",
+      "Resolve product-related inquiries",
+      "Document customer interactions"
+    ],
+    "companyName": "SupportEase Solutions",
+    "companyDescription": "Providing seamless customer support for businesses worldwide.",
+    "website": "https://supporteasesolutions.com",
+    "companyEmail": "careers@supporteasesolutions.com",
+    "companyPhoneNumber": "555-345-6789",
+    "postedDate": "12-19-2024",
+    "applicationDeadline": "01-10-2025",
+    "employmentBenefits": ["Work-from-home option", "Flexible hours"],
+    "workSchedule": "Evenings, 5 PM to 10 PM",
+    "tags": ["contract", "customer service", "remote", "support"],
+    "employerId": "677e0d9fd6265e9088089525"
+  },
+  {
+    "jobName": "Data Analyst",
+    "jobType": "Full-time",
+    "salaryRange": { "minSalary": 70000, "maxSalary": 90000 },
+    "location": "San Francisco, CA",
+    "experienceLevel": "Mid-level",
+    "qualifications": [
+      "Bachelor's Degree in Statistics or related field",
+      "Proficiency in SQL and Excel"
+    ],
+    "skills": ["SQL", "Data Visualization", "Python"],
+    "responsibilities": [
+      "Analyze financial data",
+      "Create reports for stakeholders",
+      "Ensure data accuracy and integrity"
+    ],
+    "companyName": "DataStream Analytics",
+    "companyDescription": "A leading provider of actionable business insights through data.",
+    "website": "https://datastreamanalytics.com",
+    "companyEmail": "jobs@datastreamanalytics.com",
+    "companyPhoneNumber": "555-456-7890",
+    "postedDate": "12-22-2024",
+    "applicationDeadline": "01-20-2025",
+    "employmentBenefits": ["Health insurance", "401(k)", "Onsite gym"],
+    "workSchedule": "Monday-Friday, 9 AM to 5 PM",
+    "tags": ["data", "finance", "analytics", "technology"],
+    "employerId": "677e0d9fd6265e9088089525"
+  }
+    ]
+}
+
+###
+
+###
+# Test PUT /update/:database/:collection/:id
+###
+# Update a Product (Replace {product_id} with an actual ID)
+PUT {{baseUrl}}/update/ProductsDB/Products/{product_id}
+Content-Type: application/json
+
+{
+    "update": {
+        "price": 2.49
+    }
+}
+
+###
+
+###
+# Test DELETE /delete/:database/:collection/:id
+###
+# Delete a User (Replace {user_id} with an actual ID)
+@user_id = 6775e507650ebc1a40cc5f97
+DELETE {{baseUrl}}/delete/TalentLinkDB/published_jobs/{{user_id}}
+Content-Type: application/json
+
+###
